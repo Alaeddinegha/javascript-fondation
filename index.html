@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Travaux Pratiques JavaScript</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Travaux Pratiques JavaScript</h1>
+        <p>Int&eacute;gration avec le navigateur</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row" id="max">
+        <div class="col-md-1">max</div>
+        <div class="col-md-1">(</div>
+        <div class="col-md-8"><input type="number">, <input type="number"></div>
+        <div class="col-md-1">)=</div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row" id="maxOf3">
+        <div class="col-md-1">maxOfThree</div>
+        <div class="col-md-1">(</div>
+        <div class="col-md-8">
+          <input type="number">, <input type="number">, <input type="number">
+        </div>
+        <div class="col-md-1">)=</div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row" id="maxOfArray">
+        <div class="col-md-1">maxOfArray</div>
+        <div class="col-md-1">(</div>
+        <div class="col-md-8">
+          <input type="number">, <input type="number"> <input type="button" id="addMaxOfArray" value="+">
+        </div>
+        <div class="col-md-1">)=</div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row" id="times">
+        <div class="col-md-1">times</div>
+        <div class="col-md-1">(</div>
+        <div class="col-md-8">
+          <input type="number">, <input type="number">, <input type="number"> <input type="button" id="addTimes" value="+">
+        </div>
+        <div class="col-md-1">)=</div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row" id="fact">
+        <div class="col-md-1">fact</div>
+        <div class="col-md-1">(</div>
+        <div class="col-md-8"><input type="number"></div>
+        <div class="col-md-1">)=</div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row" id="isVowel">
+        <div class="col-md-1">isVowel</div>
+        <div class="col-md-1">(</div>
+        <div class="col-md-8"><input type="text" maxlength="1"></div>
+        <div class="col-md-1">)=</div>
+        <div class="col-md-1"><input type="checkbox" disabled="true"></div>
+      </div>
+      <div class="row" id="hasVowel">
+        <div class="col-md-1">hasVowel</div>
+        <div class="col-md-1">(</div>
+        <div class="col-md-8"><input type="text"></div>
+        <div class="col-md-1">)=</div>
+        <div class="col-md-1"><input type="checkbox" disabled="true"></div>
+      </div>
+      <div class="row" id="translate">
+        <div class="col-md-1">translate</div>
+        <div class="col-md-1">(</div>
+        <div class="col-md-4"><textarea></textarea></div>
+        <div class="col-md-1">)=</div>
+        <div class="col-md-5"></div>
+      </div>
+      <div class="row" id="ajaxSync">
+        <div class="col-md-2">
+          <input value="http://www.letemps.ch/" />
+        </div>
+        <div class="col-md-10"></div>
+      </div>
+      <div class="row" id="ajaxAsync">
+        <div class="col-md-2">
+          <input value="http://www.faz.net/" />
+        </div>
+        <div class="col-md-10"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <input value="http://www.lemonde.fr/" id="jquery" />
+        </div>
+        <div class="col-md-10" id="coljquery"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="./src/index.js"></script>
+    <script type="text/javascript" src="./src/form.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-2.2.2.min.js"
+      integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="
+      crossorigin="anonymous"></script>
+    <script>window.onload = initialize;</script>
+  </body>
+</html>

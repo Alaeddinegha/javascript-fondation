@@ -1,0 +1,188 @@
+= Travaux pratiques de JavaScript
+Nicolas Frankel
+:doctype: article
+:encoding: utf-8
+:lang: fr
+:toc:
+:toc-placement!:
+:numbered:
+:experimental:
+:sourcedir: src
+
+image::https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png[Licence Creative Commons, link="http://creativecommons.org/licenses/by-nc-sa/4.0/"]
+
+Ce cours est mis à disposition selon les termes de la http://creativecommons.org/licenses/by-nc-sa/4.0/[Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International].
+
+toc::[]
+
+== Mise en place
+
+=== Prérequis
+
+* Il est nécessaire de disposer de https://www.npmjs.com/[Node Package Manager]. La link:https://github.com/npm/npm#super-easy-install[méthode d'installation] dépend du système d'exploitation.
+* Afin de récupérer les sources du _workshop_, il est souhaitable d'installer https://git-scm.com/[git].
+
+=== Références
+
+La référence du langage JavaScript est disponible sur le link:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference[site de Mozilla].
+
+=== Récupération des sources
+
+Pour disposer des sources, deux possibilités existent :
+
+1. Soit utiliser _git_ :
++
+[source, bash]
+----
+git clone git@github.com:formations/javascript-fondation.git
+----
+2. Ou bien télécharger https://github.com/formations/javascript-fondation/archive/master.zip[l'archive] puis la décompresser.
+
+=== Téléchargement des modules
+
+Le _workshop_ est basé sur la structure d'un projet npm qui utilise http://gruntjs.com/[Grunt] comme exécuteur de tâches. 
+
+Pour télécharger les dépendances du projet, exécuter la commande suivante :
+
+[source, bash]
+----
+npm install
+----
+
+=== Installation de Grunt
+
+Afin d'installer l'exécuteur de tâches Grunt nécessaire au lancement des tests, exécuter la commande suivante :
+
+[source, bash]
+----
+npm install -g grunt-cli
+----
+
+[TIP]
+====
+Sur un système *Nix, préfixer cette dernière par `sudo` pour demander une élevation temporaire des privilèges.
+====
+
+== Travail à réaliser
+
+=== JavaScript pur
+
+La première partie du travail demandé consiste à implémenter le corps de fonctions JavaScript dans le fichier `src/index.js`.
+
+Voici un exemple d'une telle fonction :
+
+[source, javascript]
+.index.js
+----
+function add(i1, i2) {
+    'use strict';
+    // Définir une fonction add() qui prend en paramètres deux nombres i1 et i2 et retourne leur somme
+}
+----
+
+Le résultat final est donc le suivant :
+[source, javascript]
+.index.js
+----
+function add(i1, i2) {
+    'use strict';
+    // Définir une fonction add() qui prend en paramètres deux nombres i1 et i2 et retourne leur somme
+    return i1 + i2;
+}
+----
+
+=== Interaction avec le navigateur
+
+La seconde partie du travail consiste à rendre fonctionnel le formulaire `index.html`.
+
+Ce formulaire reprend les fonctions développées dans la première partie (et en ajoutent 3 autres, voir ci-dessous). L'objectif est d'utiliser celles-ci de manière interactive. Pour cela, pour chaque fonction, il faut :
+
+1. Lire la valeur du (des) champs à chaque perte de focus de ceux-ci
+1. Vérifier que tous les champs ont des valeurs valides pour la fonction (par exemple, `fact()` n'accepte que des nombres)
+1. Exécuter la fonction
+1. Valoriser la dernière colonne avec le résultat de la fonction
+
+Pour les 3 dernières lignes, le champ accepte une URL et la sortie du champ lance une requête AJAX vers cette URL. Le résultat de la requête alimente la dernière colonne. Chaque ligne doit employer une méthode différente :
+
+1. AJAX synchrone
+1. AJAX asynchrone
+1. jQuery
+
+== Vérifier le code
+
+Pour aider à la vérification du code des implémentations, le projet dispose des tests unitaires sur les fonctions - https://jasmine.github.io/[Jasmine], et d'un vérificateur syntaxique - http://jshint.com/[JSHint].
+
+=== Exécuter les tests
+
+Pour exécuter les tests, taper la commande suivante :
+
+[source, bash]
+----
+grunt jasmine
+----
+
+La console doit alors afficher le résultat suivant :
+
+....
+Running "jasmine:src" (jasmine) task
+Testing jasmine specs via PhantomJS
+
+add()
+   X 1 & 2 -> 3
+     Expected undefined to equal 3. (1)
+   X 1 & 12 -> 13
+     Expected undefined to equal 13. (1)
+   X 10 & 2 -> 12
+     Expected undefined to equal 12. (1)
+....
+
+Une fois la méthode correctement implémentée, on obtient ceci :
+
+....
+Running "jasmine:src" (jasmine) task
+Testing jasmine specs via PhantomJS
+
+add()
+   ✓ 1 & 2 -> 3
+   ✓ 1 & 12 -> 13
+   ✓ 10 & 2 -> 12
+....
+
+=== Exécuter la vérification syntaxique
+
+Pour exécuter la vérification syntaxique, taper la commande suivante :
+
+[source, bash]
+----
+grunt jshint
+----
+
+La console affiche alors un résultat similaire :
+
+....
+Running "jshint:all" (jshint) task
+
+src/index.js
+  line 2   col 18  'i2' is defined but never used.
+  line 2   col 14  'i1' is defined but never used.
+....
+
+Le travail consiste à corriger les erreurs listées.
+
+Pour exécuter à la fois les tests et la vérification, taper :
+
+[source, bash]
+----
+grunt check
+----
+
+[TIP]
+====
+Les tâches Grunt `jasmine` et `jshint` sont exécutées *séquentiellement*. Si au moins un unique test échoue, la tâche `jasmine` se terminera avec un statut en erreur et l'exécutions des tâches suivantes - y compris `jshint`, s'arrêtera là.
+
+Pour forcer l'exécution de `jshint` même en cas d'échec de `jasmine`, il est nécessaire d'utiliser le paramètre `--force` :
+[source, bash]
+----
+grunt check --force
+----
+====
